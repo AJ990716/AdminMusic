@@ -1,0 +1,41 @@
+<view class="wrap" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend">
+  <view class="volume">
+    <slider block-size="12" step="1" style="display:{{showvolume}}" activeColor="#01F5FF" value="{{volume}}"  max="100" bind:change="onvolumeChange" />
+  </view>
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block class="userinfomation" wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="back" bindtap="back">く</view>
+  <view class="songinformation">
+    <view class="songName">{{adminMusic[index].songName}}</view>
+    <view class="singerName">{{adminMusic[index].singerName}}</view>
+  </view>
+  <view class="swiperdown"></view>
+  <swiper class="swiper" bindchange="songchange" circular="true" current="{{index}}">
+    <view wx:for="{{adminMusic}}">
+      <swiper-item>
+        <view class="logoimages">
+          <image class="{{songAnimation}}" style="animation-play-state:{{songImgRun}}" src="{{adminMusic[index].logoImageId}}"></image>
+        </view>
+      </swiper-item>
+    </view>
+  </swiper>
+  <view class="playBar">
+    <view class="slider">
+      <text>{{showcurrentTime}}</text>
+      <slider block-size="12" activeColor="#20C1FF" value="{{currentTime}}"  max="{{duration}}" bind:change="onSliderChange" />
+      <text>{{showduration}}</text>
+    </view>
+    <view class="playActionBar">
+      <view bindtap="like"><van-icon color="white" name="like-o" /></view>
+      <view bindtap="last" style="color:white">◁</view>
+      <view bindtap="play"><van-icon color="white" size="25" name="{{playicon}}" /></view>
+      <view bindtap="next" style="color:white">▷</view>
+      <view><picker range="{{musicname}}" bindchange="onlistChange"><van-icon color="white" name="bars" /></picker></view>
+    </view>
+  </view>
+</view>

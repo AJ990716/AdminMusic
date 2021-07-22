@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/editmusic/editmusic",
+    "pages/musicIndex/musicIndex",
+    "pages/feedback/feedback",
+    "pages/adminsong/adminsong",
+    "pages/appsupport/appsupport",
+    "pages/guanyu/guanyu",
+    "pages/news/news",
+    "pages/setup/setup",
+    "pages/wurao/wurao",
+    "pages/user/user"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "entryPagePath": "pages/index/index",
+  "usingComponents": {
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-circle": "@vant/weapp/circle/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-share-sheet": "@vant/weapp/share-sheet/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-slider": "@vant/weapp/slider/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-progress": "@vant/weapp/progress/index",
+    "van-switch": "@vant/weapp/switch/index"
+  }
+}

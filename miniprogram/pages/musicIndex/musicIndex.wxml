@@ -1,0 +1,157 @@
+<!--miniprogram/pages/musicIndex/musicIndex.wxml-->
+<view class="debg">
+  <!-- 自制顶部栏 -->
+  <view class="userinfo">
+    <block>
+      <van-icon class="backicon" bindtap="backindex" name="arrow-left" />
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <!-- Toast起提示 -->
+  <van-toast id="custom-selector" />
+  <!-- Dialog弹出框 -->
+  <van-dialog id="van-dialog" />
+  <!-- Notify消息通知 -->
+  <van-notify id="van-notify" />
+  <!-- ShareSheet分享面板 -->
+  <van-share-sheet
+    show="{{ showShare }}"
+    title="立即分享给好友"
+    options="{{ options }}"
+    bind:select="onShareSelect"
+    bind:close="onShareClose"
+  />
+  <!-- Popup弹出层 -->
+  <van-popup round show="{{ show }}" position="bottom" custom-style="height: 30%;" bind:close="onPopupClose">
+    <view class="popup-top">
+      <van-image round width="40" height="40" src="{{userInfo.avatarUrl}}" />
+      <view class="textinfo">
+        <text>{{userInfo.nickName}}</text>
+      </view>
+    </view>
+    <view class="popup-fill"></view>
+    <block wx:for="{{adminMusic}}"  wx:for-index="songindex" wx:for-item="itemMusic">
+      <view class="musicList">
+        <view>{{songindex<10?'0'+(songindex+1):songindex+1}}</view>
+        <view class="musicinfo">
+          <view data-songindex="{{songindex}}" bindtap="playsong" class="textinfo">
+            <text>{{itemMusic.songName}}</text>
+            <text>\n{{itemMusic.singerName}}</text>
+          </view>
+          <view class="addnext">
+              <van-icon data-songindex="{{songindex}}"  bindtap="nextindexarr" name="add-o" size="20px" color="#C1C1C1" />
+            </view>
+        </view>
+      </view>
+    </block>
+  </van-popup>
+  <!-- 铃声设置Popup弹出层 -->
+  <van-popup round show="{{ringshow}}" closeable close-icon-position="top-left" position="bottom" custom-style="height: 20%" bind:close="onRingClose">
+    <view style="height:80rpx"></view>
+    <van-cell bindtap="onRingClose" title="设为铃声" is-link />
+    <van-cell bindtap="onRingClose" title="设为彩铃" is-link />
+  </van-popup>
+  <!-- 歌曲播放速度Popup弹出层 -->
+  <van-popup round show="{{rateshow}}" position="center" custom-style="height:7%;width:90%;margin-top:60%" bind:close="onRateClose">
+    <view class="rate">
+      <text>{{ratetext}}</text>
+      <van-slider inactive-color="#0ff" bind:change="onRateChange" active-color="#0ff" min="5" value="{{currentRate}}" max="15" />
+      <view class="ratetext">
+        <text>减慢</text>
+        <text>正常</text>
+        <text>加快</text>
+      </view>
+    </view>
+  </van-popup>
+  <!-- volume音量Popup弹出层 -->
+  <van-popup round show="{{ volumeshow }}" closeable position="bottom" custom-style="height: 20%;" bind:close="onVolumeClose">
+    <view class="popup-top">
+      <van-image round width="40" height="40" src="{{adminMusic[index].logoImageId}}" />
+      <view class="textinfo">
+        <text>{{adminMusic[index].songName}}</text>
+        <text>\n{{adminMusic[index].singerName}}</text>
+      </view>
+    </view>
+    <view class="popup-fill"></view>
+    <view class="volume-setting">
+      <van-icon color="{{volume==0?'#555':'#0ff'}}" size="40rpx" name="volume-o" />
+      <van-slider bind:change="onVolumeChange" active-color="#0ff"  value="{{volume}}" max="10" />
+    </view>
+  </van-popup>
+  <!-- 样式界面 -->
+  <view class="content">
+    <van-tabs color="rgba(255,255,255,0.9)" line-width="20px" animated swipeable active="{{ songactive }}" bind:change="onActiveChange">
+      <van-tab title="歌曲">
+        <view class="song">
+          <swiper class="songshow" bindchange="songchange" circular="true" current="{{index}}">
+            <view wx:for="{{adminMusic}}">
+              <swiper-item>
+                <view class="songitem">
+                  <view class="minboxdown"></view>
+                  <view class="mainbox {{playstatus?'':''}}">
+                    <view class="left-top {{playstatus?'l_t_in':'l_t_out'}}">
+                      <van-image class="left-top" width="500rpx" height="500rpx" src="{{adminMusic[index].logoImageId}}" />
+                    </view>
+                    <view class="left-bottom {{playstatus?'l_b_in':'l_b_out'}}">
+                      <van-image class="left-bottom" width="500rpx" height="500rpx" src="{{adminMusic[index].logoImageId}}" />
+                    </view>
+                    <view class="right-top {{playstatus?'r_t_in':'r_t_out'}}">
+                      <van-image class="right-top" width="500rpx" height="500rpx" src="{{adminMusic[index].logoImageId}}" />
+                    </view>
+                    <view class="right-bottom {{playstatus?'r_b_in':'r_b_out'}}">
+                      <van-image class="right-bottom" width="500rpx" height="500rpx" src="{{adminMusic[index].logoImageId}}" />
+                    </view>
+                  </view>
+                </view>
+              </swiper-item>
+            </view>
+          </swiper>
+          <view class="songtext">
+            <view>{{adminMusic[index].songName}}
+              <view style="border:1px solid #fff;padding:0 10rpx;border-radius:10rpx;font-size:20rpx;margin-left:20rpx" data-message="充值VIP" bindtap="songmsg">VIP</view>
+            </view>
+            <view>{{adminMusic[index].singerName}}
+              <view style="border:1px solid #fff;padding:0 10rpx;border-radius:20rpx;font-size:20rpx;background:rgba(255,255,255,0.7);margin-left:20rpx">+</view>
+              <view style="border:1px solid #fff;padding:0 10rpx;border-radius:10rpx;font-size:20rpx;margin-left:20rpx" data-message="暂无写真" bindtap="songmsg">写真▽</view>
+              <view style="border:1px solid #fff;padding:0 10rpx;border-radius:10rpx;font-size:20rpx;margin-left:20rpx" data-message="暂无视频" bindtap="songmsg">视频</view>
+              <view style="border:1px solid #fff;padding:0 10rpx;border-radius:10rpx;font-size:20rpx;margin-left:20rpx" data-message="暂无音效" bindtap="songmsg">音效</view>
+            </view>
+            <view>流弊的人</view>
+          </view>
+          <view class="songtab">
+            <van-icon bindtap="shareinfo" color="white" size="40rpx" name="share-o" />
+            <van-icon data-message="暂不支持视频" bindtap="songmsg" color="white" size="40rpx" name="tv-o" />
+            <van-icon data-message="感谢你的支持" bindtap="songmsg" color="white" size="40rpx" name="good-job-o" />
+            <van-icon data-message="暂不支持评论" bindtap="songmsg" color="white" size="40rpx" name="chat-o" />
+            <van-icon color="white" size="40rpx" bindtap="volumepopup" name="ellipsis" />
+          </view>
+        </view>
+      </van-tab>
+      <van-tab title="竖屏MV">
+        <view class="video">
+        </view>
+      </van-tab>
+      <van-tab title="相关">
+        <view class="about">
+        </view>
+      </van-tab>
+    </van-tabs>
+  </view>
+  <view class="playBar">
+    <view class="slider">
+      <van-icon bindtap="ringsetting" size="20" style="margin-right:10rpx" name="music-o" />
+      <text>{{showcurrentTime}}</text>
+      <van-slider active-color="#20C1FF" value="{{currentTime}}" max="{{duration}}" bind:drag="onSliderChange" bind:change="onSliderChange" />
+      <text>{{showduration}}</text>
+      <text style="margin-left:10rpx;padding:3rpx 15rpx;border: 1rpx solid white;border-radius:20rpx" bindtap="playbackRate">倍速</text>
+    </view>
+    <view class="playActionBar">
+      <view bindtap="like"><van-icon color="white" name="like-o" /></view>
+      <view bindtap="previousplay" style="color:white">◁</view>
+      <view data-songindex="{{index}}" bindtap="playsong"><van-icon color="white" size="50" name="{{playstatus?'pause-circle-o':'play-circle-o'}}" /></view>
+      <view bindtap="nextplay" style="color:white">▷</view>
+      <view bindtap="moreinfo"><van-icon color="white" name="bars" /></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "新消息提醒",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#f6f6f6",
+  "disableScroll": true
+  
+}

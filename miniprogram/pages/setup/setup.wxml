@@ -1,0 +1,17 @@
+<!--pages/feedback/feedback.wxml-->
+<van-cell-group class="interval" >
+  <van-cell title="账号与安全" url="../user/user" is-link />
+</van-cell-group>
+<van-cell-group class="interval" >
+  <van-cell title="新消息提醒" url="../news/news" is-link />
+  <van-cell title="勿扰模式" url="../wurao/wurao" is-link />
+  <van-cell title="聊天" is-link />
+  <van-cell title="隐私" is-link />
+  <van-cell title="通用" is-link />
+</van-cell-group>
+<van-cell-group class="interval" >
+  <van-cell title="切换账号" class="text-center" />
+</van-cell-group>
+<van-cell-group class="interval" >
+  <van-cell title="退出" class="text-center"/>
+</van-cell-group>

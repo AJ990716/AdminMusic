@@ -1,0 +1,96 @@
+/* pages/appsupport/appsupport.wxss */
+/* .box{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(45deg,#CA09F1,#9500FF,#00F7FF,#9300FF,#E800FF);
+	background-size:200% 200%;
+  animation:mymove 10s ease infinite;
+	-webkit-animation: mymove 10s ease infinite;
+	-moz-animation: mymove 10s ease infinite;
+}
+@keyframes mymove
+{
+		0% {background-position: 0% 0%; }
+		25% {background-position: 50% 50%; }
+		50% {background-position: 100% 100%; }
+		75% {background-position: 50% 50%; }
+		100% {background-position: 0% 0%; }
+} */
+.ima{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.image{
+width: 50px;
+height: 50px;
+position: relative;
+margin: 0 auto;
+border-radius: 100%;
+}
+.te{
+  position: absolute;
+  top: 55px;
+  font-size: 15px;
+  font-style: italic;
+  color: #87CEFA;
+}
+.vanstar{
+  position: relative;
+  top: 35px;
+  display: flex;
+  justify-content: center;
+}
+.buttons{
+  position: fixed;
+  bottom: 15px;
+  left: 25%;
+}
+.btn{
+  position: fixed;
+  bottom: 15px;
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn button{
+  height: 80rpx;
+  width: 400rpx;
+  font-size: 28; 
+  border-radius: 10rpx;
+}
+.pro-1{
+position: relative;
+top: 50px;
+}
+.pro-2{
+  position: relative;
+  top: 70px;
+  }
+  .pro-3{
+    position: relative;
+    top: 90px;
+    }
+    .detail{
+      border: 1px dotted rgb(165, 205, 243);
+      position: relative;
+      margin: 0 auto;
+      /* background-color: rgba(165, 205, 243,0.2 ); */
+    }
+    .clear{
+      position: relative;
+      top: -20px;
+      right: 20px;
+      font-size: 10px;
+      color: red;
+    }
+    .pinj{
+      position: relative;
+      top: 30px;
+    }

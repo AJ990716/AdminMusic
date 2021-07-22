@@ -1,0 +1,15 @@
+<!--miniprogram/pages/guanyu/guanyu.wxml-->
+<view class="logo">
+  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604568305465&di=b95af6bb7dfbae5a55c4039af2e8c5eb&imgtype=0&src=http%3A%2F%2Fimgcdn.yicai.com%2Fuppics%2Fimages%2F2017%2F02%2F636222767748132615.jpg"></image>
+  <text>播放器</text>
+  <text>版本号：2.0.0.1</text>
+
+</view>
+<van-cell title="帮助" is-link />
+<van-cell title="功能介绍" is-link />
+<van-cell title="版本更新" is-link />
+<van-cell title="反馈" is-link />
+<view class="logo1">
+ <text>服务协议 | 隐私协议</text>
+<text>copyright@2020-2020 hoby.All Rights Reserved</text>
+</view>

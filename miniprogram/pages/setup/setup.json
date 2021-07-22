@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "设置",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#f6f6f6",
+  "disableScroll": true
+  
+}

@@ -1,0 +1,59 @@
+/* miniprogram/pages/editmusic/editmusic.wxss */
+.wrap{
+  margin: 0;
+  padding: 0;
+}
+.backicon{
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+}
+.userinfo{
+  position: fixed;
+  margin-top: 0rpx;
+  padding-top: 40rpx;
+  height: 100rpx;
+  z-index: 2;
+}
+.userinfo-avatar{
+  width: 70rpx;
+  height: 70rpx;
+  margin-left: 220rpx
+}
+.userinfo-nickname{
+  margin-left: 10rpx;
+  color: gray;
+}
+/* 内容页面 */
+.top{
+  margin-top: 140rpx;
+  margin-bottom: 20rpx;
+}
+.img_up{
+  margin-left: 50rpx;
+}
+.featureName{
+  width: 100%;
+  height: 60rpx;
+  background: white;
+  font-size: 30rpx;
+  color: gray;
+  line-height: 60rpx;
+  padding-left: 38rpx;
+}
+.setinfor view{
+  font-size: 28rpx;
+}
+.subBtn{
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subBtn button{
+  height: 80rpx;
+  width: 400rpx;
+  font-size: 28; 
+  border-radius: 10rpx;
+}

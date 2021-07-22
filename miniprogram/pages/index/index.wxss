@@ -1,0 +1,215 @@
+/* miniprogram/pages/index/index.wxss */
+.wrap{
+  margin: 0;
+  padding: 0;
+}
+.backicon{
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+}
+.userinfo{
+  position: fixed;
+  margin-top: 0rpx;
+  padding-top: 40rpx;
+  height: 100rpx;
+  z-index: 2;
+}
+.userinfo-avatar{
+  width: 70rpx;
+  height: 70rpx;
+  margin-left: 220rpx
+}
+.userinfo-nickname{
+  margin-left: 10rpx;
+  color: gray;
+}
+/* 内容页面 */
+.content{
+  position: relative;
+  margin-top: 140rpx;
+}
+/* 主页 */
+.swiper{
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 360rpx;
+}
+.images{
+  width: 100%;
+  height: 100%;
+}
+.music{
+  width: 100%;
+}
+.refresh{
+  height: 375rpx;
+  background-color: white;
+}
+.musiclist{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+.musiclist>view{
+  height: 90%;
+}
+.addnext{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+.musiclogo{
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.musiclogo>image{
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.musiclogo>.playbtn{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.musicinfo{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.musicinfo>.textinfo{
+  width: 100%;
+  margin-top: -5rpx;
+  padding-left: 10rpx;
+  font-size: 26rpx;
+}
+.musicinfo>.textinfo>text:nth-of-type(2){
+  font-size: 24rpx;
+  line-height: 50rpx;
+  color: #646566;
+}
+.musicinfo>.musicicon{
+  width: 70rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.operate{
+  width: 100px;
+  height: 100%;
+  display: flex;
+  background-color: rgba(255,255,255,0.7);
+}
+.operate>view{
+  width: 50%;
+  text-align: center;
+  line-height: 120rpx;
+  font-size: 30rpx;
+}
+.refreshAdd{
+  height: 100rpx;
+  background-color: white;
+}
+.popup-top{
+  height: 120rpx;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 10px;
+}
+.popup-top>van-image{
+  padding-bottom: 10rpx;
+}
+.popup-top>.textinfo{
+  padding-left: 20rpx;
+  font-size: 26rpx;
+}
+.popup-top>.textinfo>text:nth-of-type(2){
+  font-size: 24rpx;
+  line-height: 50rpx;
+  color: #646566;
+}
+/* 添加页面 */
+.top{
+  margin-top: 140rpx;
+  margin-bottom: 20rpx;
+}
+.img_up{
+  margin-left: 50rpx;
+}
+.featureName{
+  width: 100%;
+  height: 60rpx;
+  background: white;
+  font-size: 30rpx;
+  color: gray;
+  line-height: 60rpx;
+  padding-left: 38rpx;
+}
+.setinfor view{
+  font-size: 28rpx;
+}
+.subBtn{
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subBtn button{
+  height: 80rpx;
+  width: 400rpx;
+  font-size: 28; 
+  border-radius: 10rpx;
+}
+/* 个人页面 */
+.admin{
+  width: 100%;
+  height: 450rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.getinfor{
+  position: absolute;
+  height: 380rpx;
+  background: transparent;
+  left: 190rpx;
+  top: 40rpx;
+  margin: auto;
+}
+.adminbg{
+  position: absolute;
+  width: 100%;
+  height: 450rpx;
+  z-index: -1;  
+}
+.adminlogo{
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 60rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+.adminname{
+  margin-top: 50rpx;
+  color: white;
+  font-size: 35rpx;
+}
+.admincard{
+  margin-top: 50rpx;
+  margin: 30rpx;
+  border-radius: 5rpx;
+  box-shadow: 0 0 20rpx 1rpx rgba(0, 0, 0, 0.1);
+}
+.admincard view{
+  font-size: 30rpx;
+}

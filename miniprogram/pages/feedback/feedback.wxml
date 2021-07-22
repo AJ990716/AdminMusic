@@ -1,0 +1,10 @@
+<!--pages/feedback/feedback.wxml-->
+<van-notice-bar class="noticetext" background-color="#C0D9D9" color="red" left-icon="volume-o"
+  text="我们在收到反馈后会及时联系您并通知工作人员解决，非常感谢您对wxpro提出的意见及建议！" />
+<van-field label="意见反馈({{messageL}}/100):" class="inputtext" placeholder="在这里输入您想要反馈的内容" type="textarea" autosize maxlength="100" value="{{message}}" bind:change="onChange"/>
+<!-- <van-button class="btn" size="small" type="default" bindtap="click"></van-button> -->
+<view class="btn">
+  <van-button bindtap="click" color="linear-gradient(to right, #4bb0ff, #6149f6)">确认</van-button>
+</view>
+<text class="text-y">还有问题？联系我们</text>
+<text class="text-y phone">管理员电话：5432112138</text>

@@ -1,0 +1,19 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="interval">
+  <van-cell-group>
+    <van-cell title="勿扰模式" center label="开启后，在设定时间段内收到新消息是不会响铃或震动">
+      <van-switch checked="{{ checked }}" size="24px" active-color="#07c160" inactive-color="rgba(128,128,128,.4)"
+        bind:change="onChange" />
+    </van-cell>
+    <form>
+      <picker mode="time" value="{{starttime}}"  start="20:00" end="23:59" bindchange="bindTimeChange">
+        <van-cell title="开始时间" center value="{{starttime}}" is-link></van-cell>
+      </picker>
+    </form>
+    <form>
+      <picker mode="time" start="06:00" end="10:20" bindchange="bindTimeChange1">
+        <van-cell title="结束时间" center value="{{endtime}}" is-link></van-cell>
+      </picker>
+    </form>
+  </van-cell-group>
+</view>

@@ -1,0 +1,165 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class="wrap">
+  <!-- 自制顶部栏 -->
+  <view class="userinfo">
+    <block class="userinfomation">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <!-- Toast起提示 -->
+  <van-toast id="custom-selector" />
+  <!-- Dialog弹出框 -->
+  <van-dialog id="van-dialog" />
+  <!-- Notify消息通知 -->
+  <van-notify id="van-notify" />
+  <!-- ShareSheet分享面板 -->
+  <van-share-sheet
+    show="{{ showShare }}"
+    title="立即分享给好友"
+    options="{{ options }}"
+    bind:select="onShareSelect"
+    bind:close="onShareClose"
+  />
+  <!-- Popup弹出层 -->
+  <van-popup round show="{{ show }}" closeable position="bottom" custom-style="height: 30%;" bind:close="onPopupClose">
+    <view class="popup-top">
+      <van-image round width="40" height="40" src="{{adminMusic[showindex].logoImageId}}" />
+      <view class="textinfo">
+        <text>{{adminMusic[showindex].songName}}</text>
+        <text>\n{{adminMusic[showindex].singerName}}</text>
+      </view>
+    </view>
+    <van-cell data-songindex="{{showindex}}" bindtap="nextindexarr" icon="add-o" title="下一首播放" />
+    <van-cell data-songindex="{{showindex}}" bindtap="musicinfoshow" icon="info-o" title="歌曲信息" />
+    <van-cell bindtap="shareinfo" icon="share-o" title="分享" />
+    <van-cell data-songindex="{{showindex}}" bindtap="badmusic" icon="close" title="不感兴趣" />
+  </van-popup>
+  <!-- 歌曲信息Popup弹出层 -->
+  <van-popup round show="{{musicshow}}" closeable close-icon-position="top-left" position="bottom" custom-style="height: 20%" bind:close="onMusicInfoClose">
+    <view style="height:80rpx"></view>
+    <van-cell icon="music-o" title="歌曲:{{adminMusic[showindex].songName}}" is-link />
+    <van-cell icon="user-o" title="歌手:{{adminMusic[showindex].singerName}}" is-link />
+    <van-cell icon="manager-o" title="上传者:{{adminMusic[showindex].adminname}}" is-link />
+  </van-popup>
+  <!-- active页面 -->
+  <!-- 首页 -->
+  <view wx:if="{{active == 0}}" class="content">
+    <!-- 轮播图 -->
+    <swiper class="swiper" indicator-dots indicator-color="rgba(0, 0, 0, .1)" indicator-active-color="rgba(255, 255, 255, .7)" autoplay interval="3000" duration="1000" circular easing-function="easeOutCubic">
+      <block wx:for="{{carousel}}">
+        <swiper-item>
+          <image class="images" src="{{item}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 音乐列表 -->
+    <view class="music">
+      <view class="refresh"></view>
+      <block wx:for="{{adminMusic}}" wx:for-index="songindex" wx:for-item="itemMusic">
+        <van-swipe-cell right-width="{{ 100 }}">
+          <view class="musiclist" style="background-color: {{index===songindex?'rgba(0,255,0,0.1)':'rgba(255,255,255,0.7)'}};">
+            <view class="addnext">
+              <van-icon data-songindex="{{songindex}}"  bindtap="nextindexarr" name="add-o" color="#C1C1C1" />
+            </view>
+            <view class="musicinfo">
+              <view class="musiclogo">
+                <image src="{{itemMusic.logoImageId}}"/>
+                <van-icon data-songindex="{{songindex}}" bindtap="playsong" class="playbtn" color="{{index===songindex&&playstatus?'rgba(0,255,0,0)':'rgba(0,255,0,0.3)'}}" size="26px" name="{{index==songindex&&!playstatus?'pause-circle-o':''}}" />
+              </view>
+              <view data-songindex="{{songindex}}" bindtap="inmusicindex" class="textinfo">
+                <text>{{itemMusic.songName}}</text>
+                <text>\n{{itemMusic.singerName}}</text>
+              </view>
+              <view class="musicicon">
+                <van-icon data-songindex="{{songindex}}" bindtap="moreinfo" name="ellipsis" />
+              </view>
+            </view>
+          </view>
+          <view slot="right" class="operate">
+            <view>
+              <van-icon data-songindex="{{songindex}}" data-dataid="{{itemMusic._id}}" bindtap="editmusic" name="edit" color="#7D94F5" />
+            </view>
+            <view>
+              <van-icon data-songindex="{{songindex}}" data-dataid="{{itemMusic._id}}" bindtap="delmusic" name="cross" color="#CC4937" />
+            </view>
+          </view>
+        </van-swipe-cell>
+      </block>
+    </view>
+    <view class="refreshAdd"></view>
+  </view>
+  <!-- 添加数据 -->
+  <view wx:elif="{{active == 1}}" class="content">
+    <view class="featureName top">音乐LOGO</view>
+    <van-uploader class="img_up" file-list="{{ images }}" upload-text="上传图片" bind:after-read="afterRead"  bind:delete="delete" max-count="1" />
+    <view class="featureName">音乐信息</view>
+    <view class="setinfor">
+      <van-cell-group>
+        <van-field
+          clearable
+          label="音乐名："
+          icon="question-o"
+          value="{{getSongName}}"
+          placeholder="请输入音乐名"
+          bind:click-icon="onClickIcon"
+          bind:input="getSongName"
+          required
+        />
+        <van-field
+          clearable
+          label="歌手名："
+          value="{{getSingerName}}"
+          placeholder="请输入歌手名"
+          bind:input="getSingerName"
+          required
+        />
+        <van-field
+          clearable
+          label="音乐地址："
+          value="{{getmusicAddress}}"
+          placeholder="请输入音乐地址"
+          type="textarea"
+          maxlength="340"
+          show-word-limit
+          autosize
+          bind:input="getmusicAddress"
+          required
+          error-message="{{musicAddressPass?'':'音乐地址格式错误'}}"
+        />
+      </van-cell-group>
+      <view class="featureName">上传者信息</view>
+      <van-cell-group>
+        <van-field
+          value="{{userInfo.nickName}}"
+          label="用户名："
+          left-icon="contact"
+          disabled
+        />
+      </van-cell-group>
+    </view>
+    <view class="subBtn">
+      <van-button bindtap="submit" color="linear-gradient(to right, #4bb0ff, #6149f6)">提交</van-button>
+    </view>
+  </view>
+  <!-- 个人中心 -->
+  <view wx:else class="content">
+    <view class="admin">
+      <image class="adminbg" src="cloud://aj-0716-nax47.616a-aj-0716-nax47-1301306489/example666.jpg"></image>
+      <image class="adminlogo" src="{{userInfo.avatarUrl}}"></image>
+      <text class="adminname">{{userInfo.nickName}}</text>
+    </view>
+    <view class="admincard">
+      <van-cell icon="edit" url="../feedback/feedback" title="意见反馈" is-link />
+      <van-cell icon="good-job-o" url="../appsupport/appsupport" title="赞赏支持" is-link />
+      <van-cell icon="other-pay" url="../guanyu/guanyu" title="关于" is-link />
+      <van-cell icon="setting-o" url="../setup/setup" title="设置" is-link />
+    </view>
+  </view>
+  <!-- 自制底部导航栏 -->
+  <van-tabbar active="{{ active }}" active-color="#07c160" bind:change="onChange">
+    <van-tabbar-item icon="wap-home">首页</van-tabbar-item>
+    <van-tabbar-item icon="add">添加</van-tabbar-item>
+    <van-tabbar-item icon="manager">个人中心</van-tabbar-item>
+  </van-tabbar>
+</view>

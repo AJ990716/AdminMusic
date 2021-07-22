@@ -1,0 +1,67 @@
+<!--pages/appsupport/appsupport.wxml-->
+<view class="box">
+<van-notice-bar
+  color="#1989fa"
+  background="#ecf9ff"
+  left-icon="volume-o"
+  text="感谢你的使用，我们一定会更加努力完善！"
+/>
+<view class="ima">
+<image  src="https://img.tuguaishou.com/ips_templ_preview/w432_q100/97/5f/fb/lg_2904507_1586425822_5e8eefdeb3360.jpg?auth_key=2236953600-0-0-c4b86db2fa357532537341570c9bc1ef" class="image">
+</image>
+<text class="te">VOICE LIVE</text>
+</view>
+<van-rate
+  class="vanstar"
+  value="{{ value }}"
+  size="{{ 25 }}"
+  color="#9500FF"
+  void-color="#eee"
+  void-icon="star"
+  bind:change="onChange"
+  bindtap="star"
+/>
+<view class="pinj">
+<van-divider
+  contentPosition="center"
+  customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;"
+>
+  评价
+</van-divider>
+<!-- <van-cell-group>
+  <van-field
+  type="textarea"
+    autosize
+    label="评价"
+    value="{{ value }}"
+    placeholder="请输入你的评价！"
+    border="{{ false }}"
+    maxlength="150"
+    show-word-limit
+  />
+</van-cell-group> -->
+<textarea maxlength='150'
+ placeholder-style="color:#5F5F5F;" 
+ class="detail" 
+ bindblur="bindContentBlur" 
+ bindinput='limitWord' 
+ value="{{content}}" 
+   placeholder="请输入你的评价！" 
+ name="content"></textarea>
+<view class="clear">
+       <text style="float: right">{{currentWord}}/{{maxWord}}</text>
+</view>
+</view>
+<view class="btn">
+  <van-button bindtap="queren" color="linear-gradient(to right, #4bb0ff, #6149f6)">确认</van-button>
+</view>
+<van-progress pivot-text="完善" color="#f2826a" percentage="25"  class="pro-1"/>
+<van-progress pivot-text="努力" color="#ee0a24" percentage="50" class="pro-2"/>
+<van-progress
+class="pro-3"
+  percentage="75"
+  pivot-text="加油"
+  pivot-color="#7232dd"
+  color="linear-gradient(to right, #be99ff, #7232dd)"
+/>
+</view>

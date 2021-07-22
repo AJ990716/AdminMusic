@@ -1,0 +1,15 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="interval">
+  <van-cell-group>
+    <van-cell title="接受新消息通知" center >
+      <van-switch checked="{{ checked }}" size="24px" active-color="#07c160" inactive-color="rgba(128,128,128,.4)"  bind:change="onChange" />
+    </van-cell>
+  </van-cell-group>
+</view>
+<view class="interval">
+  <van-cell-group>
+    <van-cell title="通知显示详细消息详情" center label="关闭后，当收到消息是，通知将不显示发信人和内容摘要" >
+      <van-switch checked="{{ checked1 }}" size="24px" active-color="#07c160" inactive-color="rgba(128,128,128,.4)"  bind:change="onChange1" />
+    </van-cell>
+  </van-cell-group>
+</view>

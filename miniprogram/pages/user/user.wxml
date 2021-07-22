@@ -1,0 +1,5 @@
+<!--pages/feedback/feedback.wxml-->
+<van-cell-group class="interval" >
+  <van-cell title="用户名" value="123" />
+  <van-cell title="密码" value="123" value-class="password:true" />
+</van-cell-group>
